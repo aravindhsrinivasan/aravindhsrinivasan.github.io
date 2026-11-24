@@ -30,6 +30,8 @@ Professional experience is presented separately from personal projects. No emplo
 
 ## Publishing
 
-The intended home is GitHub Pages for `aravindhsrinivasan`. Confirm the authenticated GitHub account and inspect any existing repository before creating or updating it. Publish only this reviewed site, not the original pitch files or planning notes.
+Live site: https://aravindhsrinivasan.github.io/
+
+GitHub Pages deploys the repository root from `main`. Confirm the authenticated GitHub account before pushing updates. Publish only this reviewed site, not the original pitch files or planning notes.
 
 No analytics or third-party scripts are included. GitHub Pages hosting has its own service policies.
