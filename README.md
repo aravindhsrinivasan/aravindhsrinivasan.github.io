@@ -38,4 +38,8 @@ Live site: https://aravindhsrinivasan.github.io/
 
 GitHub Pages deploys the repository root from `main`. The owner approved this public-safe pitch adaptation for publication. Confirm the authenticated GitHub account before pushing updates. Publish only the reviewed site, not original pitch files, audio or planning notes.
 
+### Link previews
+
+LinkedIn, Teams and other apps build the preview card from the Open Graph tags in `index.html` and `assets/share-card.jpg` (1200×627, made from the hero art and headline). After changing either, run the live URL through https://www.linkedin.com/post-inspector/ to refresh LinkedIn's cached preview.
+
 No analytics or third-party scripts are included. GitHub Pages hosting has its own service policies.

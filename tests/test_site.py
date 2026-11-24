@@ -36,6 +36,19 @@ class PortfolioTests(unittest.TestCase):
                 self.assertTrue((ROOT / attrs["src"]).is_file())
                 self.assertTrue(attrs.get("alt"))
 
+    def test_link_preview_uses_published_share_card(self):
+        meta = {
+            attrs.get("property") or attrs.get("name"): attrs.get("content", "")
+            for tag, attrs in self.page.elements if tag == "meta"
+        }
+        origin = "https://aravindhsrinivasan.github.io/"
+        self.assertEqual(meta["og:url"], origin)
+        self.assertTrue(meta["og:image"].startswith(origin))
+        self.assertTrue((ROOT / meta["og:image"][len(origin):]).is_file())
+        self.assertEqual((meta["og:image:width"], meta["og:image:height"]), ("1200", "627"))
+        self.assertTrue(meta["og:title"] and meta["og:description"] and meta["og:image:alt"])
+        self.assertEqual(meta["twitter:card"], "summary_large_image")
+
     def test_guided_pitch_keeps_recording_out_and_discloses_local_voice(self):
         sections = [
             attrs for tag, attrs in self.page.elements
