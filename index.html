@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aravindh Srinivasan | AI Product Manager</title>
+  <meta name="description" content="AI product management, grounded in discovery, evaluation and human judgment. Explore Aravindh Srinivasan's experience and personal project roadmap.">
+  <meta name="color-scheme" content="dark">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0e0b2b; --bg-alt: #130f3e; --surface: #1b1650; --surface-alt: #231d5f;
+      --ink: #f5f6ff; --muted: #c3c7f0; --soft: #a2a8de; --lavender: #a5b4fc;
+      --accent: #6366f1; --amber: #fbbf24; --amber-ink: #1c1300;
+      --line: rgba(165, 180, 252, .25); --line-strong: rgba(165, 180, 252, .5);
+      --shadow: 0 20px 60px rgba(4, 2, 22, .4);
+      --font: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--font); }
+    a { color: var(--lavender); text-underline-offset: .2em; }
+    button { font: inherit; }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--amber); outline-offset: 4px; border-radius: 8px;
+    }
+    .skip { position: fixed; top: -80px; left: 16px; padding: 12px; z-index: 100; background: var(--amber); color: var(--amber-ink); }
+    .skip:focus { top: 12px; }
+    .topbar {
+      position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 14px clamp(20px, 5vw, 60px); background: var(--bg); border-bottom: 1px solid var(--line);
+    }
+    .brand { color: var(--ink); text-decoration: none; line-height: 1.2; }
+    .brand strong { display: block; font-size: 15px; }
+    .brand span { display: block; margin-top: 4px; color: var(--soft); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+    .navlinks { display: flex; align-items: center; gap: 18px; font-size: 14px; }
+    .navlinks a { text-decoration: none; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px;
+      border: 1px solid var(--line-strong); border-radius: 999px; background: transparent;
+      color: var(--ink); font-weight: 700; cursor: pointer; text-decoration: none;
+    }
+    .btn:hover { border-color: var(--lavender); }
+    .btn-primary { background: var(--amber); color: var(--amber-ink); border-color: var(--amber); }
+    .btn-small { padding: 8px 14px; font-size: 14px; }
+    .slide { position: relative; min-height: calc(100vh - 75px); display: flex; align-items: center; padding: 76px clamp(20px, 6vw, 72px) 100px; }
+    .slide:nth-of-type(even) { background: var(--bg-alt); }
+    .wrap { width: 100%; max-width: 1180px; margin-inline: auto; }
+    .hero { display: grid; grid-template-columns: 1.25fr .75fr; gap: 48px; align-items: center; }
+    .eyebrow { margin: 0; color: var(--amber); font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { font-size: clamp(42px, 6.3vw, 78px); line-height: 1.04; letter-spacing: -.03em; margin: 14px 0 22px; }
+    h2 { font-size: clamp(30px, 4vw, 48px); line-height: 1.12; letter-spacing: -.02em; margin: 12px 0 18px; }
+    h3 { font-size: 20px; line-height: 1.3; margin: 0 0 10px; }
+    p { margin: 0 0 16px; }
+    .lead { color: var(--muted); font-size: clamp(18px, 2vw, 23px); max-width: 55ch; }
+    .meta, .note { color: var(--soft); font-size: 15px; }
+    #copy-status { overflow-wrap: anywhere; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+    .hero-art { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
+    .hero-art img { display: block; width: 100%; height: auto; }
+    .hero-art figcaption { padding: 12px 18px; color: var(--muted); background: var(--surface); font-size: 13px; }
+    .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 28px; }
+    .pillar, .card, .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+    .pillar strong { display: block; color: var(--lavender); }
+    .pillar span { display: block; color: var(--muted); font-size: 14px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card p, .panel p { color: var(--muted); }
+    .card p:last-child, .panel p:last-child { margin-bottom: 0; }
+    .status { display: inline-block; margin-bottom: 18px; padding: 4px 10px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--amber); font-size: 12px; font-weight: 700; }
+    .project .proof { padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; }
+    .supporting { padding: 18px 22px; border-left: 3px solid var(--amber); background: var(--surface); color: var(--muted); }
+    .supporting strong { color: var(--ink); }
+    details.card { padding: 0; }
+    details.card summary { cursor: pointer; padding: 22px; font-size: 20px; font-weight: 700; color: var(--lavender); }
+    details.card .body { padding: 0 22px 22px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 16px; }
+    .tab {
+      color: var(--muted); background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: 12px; padding: 12px 16px; cursor: pointer; font-weight: 700;
+    }
+    .tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+    .panel { background: var(--surface-alt); }
+    .callout { margin-top: 20px; border-left: 3px solid var(--amber); padding: 18px 22px; color: var(--muted); }
+    .path { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 0; margin: 28px 0; list-style: none; }
+    .path li { padding-top: 18px; border-top: 2px solid var(--line-strong); }
+    .path strong { display: block; color: var(--amber); margin-bottom: 8px; }
+    .path p { color: var(--muted); font-size: 15px; }
+    footer { padding: 28px clamp(20px, 6vw, 72px); border-top: 1px solid var(--line); color: var(--soft); font-size: 13px; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+    .tour { position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 40; max-height: calc(100vh - 80px); overflow-y: auto; }
+    .tourbox { max-width: 980px; margin-inline: auto; padding: 18px; background: var(--bg-alt); border: 1px solid var(--line-strong); border-radius: 18px; box-shadow: var(--shadow); }
+    .tourhead { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 12px; color: var(--amber); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    .tourtext { margin-bottom: 12px; }
+    .tourcontrols { display: flex; gap: 8px; }
+    .tourtrack { height: 4px; margin-top: 14px; background: var(--line); border-radius: 4px; overflow: hidden; }
+    .tourfill { height: 100%; width: 0; background: var(--amber); }
+    body.touring { padding-bottom: var(--tour-space, 230px); }
+    body.touring .slide { scroll-margin-top: 20px; }
+    .js-only { display: none; }
+    .js .js-only { display: inline-flex; }
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; gap: 28px; }
+      .hero-art { max-width: 380px; }
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .path { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      body { font-size: 16px; }
+      .topbar { gap: 8px; padding: 12px 18px; }
+      .brand span, .navlinks .optional { display: none; }
+      .navlinks { gap: 12px; font-size: 13px; }
+      .slide { padding-block: 48px 72px; min-height: auto; }
+      .cards, .pillars, .path { grid-template-columns: 1fr; }
+      .tabs { gap: 8px; }
+      .tab { flex: 1 1 140px; padding: 10px; }
+      .tour { bottom: 8px; left: 8px; right: 8px; }
+      .tourbox { padding: 14px; }
+      .tourcontrols .btn { flex: 1; }
+      .tourtext { font-size: 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      .topbar, .tour, .skip, .actions, .tabs { display: none !important; }
+      .slide { min-height: auto; padding: 24px; break-inside: avoid; }
+      [role="tabpanel"][hidden] { display: block !important; }
+      body.touring { padding-bottom: 0; }
+    }
+  </style>
+  <noscript><style>.tabs { display: none; } [role="tabpanel"][hidden] { display: block !important; margin-top: 12px; }</style></noscript>
+</head>
+<body>
+  <a class="skip" href="#hello">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="#hello"><strong>Aravindh Srinivasan</strong><span>AI Product Manager</span></a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#projects">Projects</a><a href="#experience" class="optional">Experience</a><a href="#contact">Contact</a>
+      <a href="https://github.com/aravindhsrinivasan" class="optional">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <section class="slide" id="hello" aria-labelledby="hello-title" data-caption="I'm Aravindh, an AI product manager. I turn generative AI into products people trust, bringing together customer discovery, evaluation and platform thinking.">
+      <div class="wrap hero">
+        <div>
+          <p class="eyebrow">Senior AI Product Manager</p>
+          <h1 id="hello-title">Aravindh<br>Srinivasan</h1>
+          <p class="lead">I turn generative AI into products people trust.</p>
+          <p class="meta">Cloud, data and AI &middot; Bengaluru, India</p>
+          <div class="actions">
+            <button class="btn btn-primary js-only" id="tour-start" type="button" aria-pressed="false">Read the guided pitch</button>
+            <a class="btn" href="#projects">Explore my project roadmap</a>
+          </div>
+          <p class="note">Guided captions are available now. Revised narration will be added later.</p>
+          <div class="pillars">
+            <div class="pillar"><strong>Discovery</strong><span>Start with the user's job.</span></div>
+            <div class="pillar"><strong>Evaluation</strong><span>Define quality before launch.</span></div>
+            <div class="pillar"><strong>Human judgment</strong><span>Make consequential actions explicit.</span></div>
+            <div class="pillar"><strong>Platform thinking</strong><span>Build reusable capabilities.</span></div>
+          </div>
+        </div>
+        <figure class="hero-art">
+          <img src="assets/growth.jpg" width="560" height="629" alt="A seedling with roots that become glowing circuit lines, illustrating growth from cloud and data into AI.">
+          <figcaption>Roots in cloud and data. Growing AI products on top.</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="slide" id="projects" aria-labelledby="projects-title" data-caption="My personal project roadmap has three parts: a cited documentation copilot, a support agent with human approval, and a measured improvement to the copilot. These projects are planned, not completed demos.">
+      <div class="wrap">
+        <p class="eyebrow">Personal project roadmap</p>
+        <h2 id="projects-title">Build it. Break it. Measure it.</h2>
+        <p class="lead">Independent projects using public documentation and fictional scenarios. This is the plan; code, demos and measured results will be linked as they become ready.</p>
+        <div class="cards">
+          <article class="card project">
+            <span class="status">Planned &middot; not yet built</span>
+            <h3>RAG support copilot</h3>
+            <p>A Kubernetes documentation assistant designed to cite sources, respect versions and abstain when the docs cannot support an answer.</p>
+            <p class="proof"><strong>What it will demonstrate:</strong> discovery, retrieval, AI UX and evaluation beyond a happy-path demo.</p>
+          </article>
+          <article class="card project">
+            <span class="status">Planned &middot; not yet built</span>
+            <h3>Support triage agent</h3>
+            <p>A workflow for fictional tickets: classify, retrieve context and draft a response. A person approves consequential actions. Tool failures are part of the test.</p>
+            <p class="proof"><strong>What it will demonstrate:</strong> tool permissions, approval boundaries and recovery behavior.</p>
+          </article>
+          <article class="card project">
+            <span class="status">Planned &middot; not yet built</span>
+            <h3>Improve with evidence</h3>
+            <p>Extend the copilot with model routing, then compare quality, cost and latency against its baseline on held-out questions.</p>
+            <p class="proof"><strong>What it will demonstrate:</strong> product tradeoffs backed by reproducible results, not claims of improvement.</p>
+          </article>
+        </div>
+        <p class="supporting"><strong>Also planned:</strong> a fictional help-desk MCP server, an evaluation-plan template, a decision casebook, a prototype hub and an evals workshop. These will be developed from public references, not employer artifacts.</p>
+      </div>
+    </section>
+    <section class="slide" id="experience" aria-labelledby="experience-title" data-caption="My professional background spans cloud consulting, data platforms and AI product delivery. I work across discovery, prototyping and launch, with particular attention to quality and the decisions that keep users in control.">
+      <div class="wrap">
+        <p class="eyebrow">Professional experience</p>
+        <h2 id="experience-title">From product idea to useful capability</h2>
+        <p class="lead">A high-level view of my experience, separate from the personal projects above.</p>
+        <div class="cards">
+          <details class="card"><summary>Generative AI delivery</summary><div class="body"><p>Product leadership across discovery, previews and general availability for summarization experiences.</p><p>My focus: define the user's job, test the quality bar and make the experience useful in an existing workflow.</p></div></details>
+          <details class="card"><summary>AI quality and judgment</summary><div class="body"><p>Experience defining evaluation criteria, combining automated checks with human review, and making rollout and rollback decisions.</p><p>My focus: treat reliability as product scope, not something to inspect only after launch.</p></div></details>
+          <details class="card"><summary>Human-in-the-loop workflows</summary><div class="body"><p>Exploring where agents can gather context and draft work, and where a person should remain responsible for the next action.</p><p>My focus: make approval, uncertainty and failure visible to the user.</p></div></details>
+          <details class="card"><summary>Cloud and data platforms</summary><div class="body"><p>A background in cloud consulting, platform migration and developer enablement.</p><p>My focus: understand the people and workflows around the technology, including adoption and change management.</p></div></details>
+          <details class="card"><summary>Prototypes as a thinking tool</summary><div class="body"><p>I use working prototypes to make ideas concrete, collect feedback and record decisions before larger engineering investments.</p><p>My focus: label what is real, what is simulated and what still needs validation.</p></div></details>
+          <details class="card"><summary>Helping others build</summary><div class="body"><p>I enjoy mentoring colleagues and helping people get comfortable with product thinking and AI-assisted development.</p><p>My focus: share a repeatable way to learn, not just a finished artifact.</p></div></details>
+        </div>
+      </div>
+    </section>
+    <section class="slide" id="approach" aria-labelledby="approach-title" data-caption="I start with the user and the failure cases, define success, combine automated evaluation with human review, and plan how to roll out or stop. A working prototype is useful only when its limitations are clear.">
+      <div class="wrap">
+        <p class="eyebrow">How I approach AI products</p>
+        <h2 id="approach-title">Trust is part of the product</h2>
+        <p class="lead">The questions I want answered before calling a demo a product.</p>
+        <div class="tabs" role="tablist" aria-label="Product development approach">
+          <button class="tab" id="discover-tab" role="tab" aria-controls="discover-panel" aria-selected="true" type="button">Understand the job</button>
+          <button class="tab" id="criteria-tab" role="tab" aria-controls="criteria-panel" aria-selected="false" tabindex="-1" type="button">Define success</button>
+          <button class="tab" id="evaluate-tab" role="tab" aria-controls="evaluate-panel" aria-selected="false" tabindex="-1" type="button">Evaluate</button>
+          <button class="tab" id="review-tab" role="tab" aria-controls="review-panel" aria-selected="false" tabindex="-1" type="button">Keep people in control</button>
+          <button class="tab" id="learn-tab" role="tab" aria-controls="learn-panel" aria-selected="false" tabindex="-1" type="button">Ship and learn</button>
+        </div>
+        <div class="panel" id="discover-panel" role="tabpanel" aria-labelledby="discover-tab"><h3>Start with the user, not the model</h3><p>Understand the task, the current workaround and the cost of being wrong. Use examples of failure to decide where AI can help and where it should not act.</p></div>
+        <div class="panel" id="criteria-panel" role="tabpanel" aria-labelledby="criteria-tab" hidden><h3>Set the bar before the result</h3><p>Write down success criteria, non-goals and unacceptable failures. A launch decision should not depend on moving the goalposts after seeing an evaluation.</p></div>
+        <div class="panel" id="evaluate-panel" role="tabpanel" aria-labelledby="evaluate-tab" hidden><h3>Use the right kind of evidence</h3><p>Check deterministic requirements with code, use expert review for judgment, and calibrate model-based evaluation rather than treating it as ground truth.</p></div>
+        <div class="panel" id="review-panel" role="tabpanel" aria-labelledby="review-tab" hidden><h3>Make the approval boundary visible</h3><p>Distinguish reading, drafting and acting. Show uncertainty, explain tool failures and require approval before a consequential action.</p></div>
+        <div class="panel" id="learn-panel" role="tabpanel" aria-labelledby="learn-tab" hidden><h3>Know what would make you stop</h3><p>Plan feedback, regression checks and rollback conditions. Report inconclusive results when the evidence does not support a decision.</p></div>
+        <p class="callout">These are my general product principles. The personal projects will make them inspectable through code, test cases and decision records.</p>
+      </div>
+    </section>
+    <section class="slide" id="fit" aria-labelledby="fit-title" data-caption="My interests connect AI applications, agent platforms and evaluation. I bring the product questions across those boundaries: who benefits, what can go wrong, and what evidence would justify the next investment?">
+      <div class="wrap">
+        <p class="eyebrow">Role fit</p>
+        <h2 id="fit-title">Choose the lens that matters to your team</h2>
+        <div class="tabs" role="tablist" aria-label="Role lens">
+          <button class="tab" id="applications-tab" data-lens="applications" role="tab" aria-controls="applications-panel" aria-selected="true" type="button">AI applications</button>
+          <button class="tab" id="agents-tab" data-lens="agents" role="tab" aria-controls="agents-panel" aria-selected="false" tabindex="-1" type="button">Agents and platforms</button>
+          <button class="tab" id="quality-tab" data-lens="quality" role="tab" aria-controls="quality-panel" aria-selected="false" tabindex="-1" type="button">Quality and evals</button>
+        </div>
+        <div class="panel" id="applications-panel" role="tabpanel" aria-labelledby="applications-tab"><h3>Turn model capability into a useful workflow</h3><p>Discovery, product definition, prototyping and launch decisions. My planned documentation copilot will connect those decisions to explicit failure cases.</p></div>
+        <div class="panel" id="agents-panel" role="tabpanel" aria-labelledby="agents-tab" hidden><h3>Design the boundaries, not just the happy path</h3><p>Reusable capabilities, tool permissions and human approval. My planned triage agent and fictional help-desk MCP server will explore these boundaries.</p></div>
+        <div class="panel" id="quality-panel" role="tabpanel" aria-labelledby="quality-tab" hidden><h3>Make the launch recommendation defensible</h3><p>Evaluation design, regression analysis and quality-cost tradeoffs. My planned baseline and model-routing comparison will publish measured outcomes when they exist.</p></div>
+        <div class="actions js-only"><button class="btn btn-small" id="copy-lens" type="button">Copy a link to this lens</button></div>
+        <output id="copy-status" class="note" aria-live="polite"></output>
+      </div>
+    </section>
+    <section class="slide" id="path" aria-labelledby="path-title" data-caption="I started in IT operations at Accenture, moved into Azure cloud consulting at Microsoft, and then into product management. That path shapes how I think about users, platforms and delivery.">
+      <div class="wrap">
+        <p class="eyebrow">My path</p>
+        <h2 id="path-title">Operator. Consultant. Product manager.</h2>
+        <ol class="path">
+          <li><strong>IT operations</strong><h3>Accenture</h3><p>Learning how systems behave beyond the design document, and how automation changes everyday work.</p></li>
+          <li><strong>Cloud consulting</strong><h3>Microsoft Azure</h3><p>Working with customers on cloud platforms, delivery practices and developer enablement.</p></li>
+          <li><strong>Product management</strong><h3>Data and platforms</h3><p>Turning customer problems into capabilities, while considering adoption, migration and long-term maintenance.</p></li>
+          <li><strong>AI products</strong><h3>Useful and trustworthy</h3><p>Bringing discovery, prototypes, evaluation and human judgment together.</p></li>
+        </ol>
+        <p class="lead">Next, I want to own an AI product area end to end, from strategy and quality bars to launch and learning.</p>
+      </div>
+    </section>
+    <section class="slide" id="contact" aria-labelledby="contact-title" data-caption="Outside work, I enjoy mentoring, organic terrace gardening and cooking. I'm interested in teams building useful, trustworthy AI. You can find me on LinkedIn and GitHub.">
+      <div class="wrap">
+        <p class="eyebrow">Beyond the roadmap</p>
+        <h2 id="contact-title">Curiosity does not stop at work</h2>
+        <div class="cards">
+          <div class="card"><h3>Mentoring</h3><p>Helping people find their footing and build confidence in a new role.</p></div>
+          <div class="card"><h3>Terrace gardening</h3><p>An organic garden that started during lockdown and kept growing.</p></div>
+          <div class="card"><h3>Cooking</h3><p>Experimenting in the kitchen and sharing the results.</p></div>
+        </div>
+        <p class="lead">Building useful, trustworthy AI? Let's talk.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/saiaravindh" rel="noopener">Connect on LinkedIn</a>
+          <a class="btn" href="https://github.com/aravindhsrinivasan" rel="noopener">Find me on GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap"><span>Personal portfolio. Views my own; no employer endorsement.</span><span>Made with AI assistance. No analytics or third-party scripts. Captions only.</span></div></footer>
+  <aside class="tour" id="tour" aria-label="Guided pitch captions" hidden>
+    <div class="tourbox">
+      <div class="tourhead"><span id="tour-step"></span><span>Captions only</span></div>
+      <p class="tourtext" id="tour-text" aria-live="polite"></p>
+      <div class="tourcontrols">
+        <button class="btn btn-small" id="tour-pause" type="button">Pause</button>
+        <button class="btn btn-small" id="tour-next" type="button">Next</button>
+        <button class="btn btn-small" id="tour-stop" type="button">Stop</button>
+      </div>
+      <div class="tourtrack" aria-hidden="true"><div class="tourfill" id="tour-fill"></div></div>
+    </div>
+  </aside>
+  <script>
+    (() => {
+      "use strict";
+      const sections = [...document.querySelectorAll(".slide")];
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const start = document.getElementById("tour-start");
+      const tour = document.getElementById("tour");
+      const text = document.getElementById("tour-text");
+      const step = document.getElementById("tour-step");
+      const fill = document.getElementById("tour-fill");
+      const pause = document.getElementById("tour-pause");
+      new ResizeObserver(() => {
+        document.body.style.setProperty("--tour-space", `${tour.getBoundingClientRect().height + 32}px`);
+      }).observe(tour, { box: "border-box" });
+      let running = false, paused = false, index = 0, elapsed = 0, previous = 0, frame = 0;
+      const duration = section => Math.max(8000, section.dataset.caption.split(/\s+/).length * 400);
+
+      function goTo(section) {
+        section.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+      }
+      function showCaption(next) {
+        index = next; elapsed = 0; previous = performance.now();
+        text.textContent = sections[index].dataset.caption;
+        step.textContent = `${index + 1} / ${sections.length}`;
+        fill.style.width = "0%";
+        goTo(sections[index]);
+      }
+      function stopTour(restoreFocus = false) {
+        running = false; paused = false; cancelAnimationFrame(frame);
+        tour.hidden = true; document.body.classList.remove("touring");
+        start.textContent = "Read the guided pitch"; start.setAttribute("aria-pressed", "false");
+        if (restoreFocus) start.focus({ preventScroll: true });
+      }
+      function nextCaption() {
+        if (!running) return;
+        if (index + 1 >= sections.length) { stopTour(true); return; }
+        showCaption(index + 1);
+      }
+      function tick(now) {
+        if (!running || paused) return;
+        elapsed += now - previous; previous = now;
+        const total = duration(sections[index]);
+        fill.style.width = `${Math.min(100, elapsed / total * 100)}%`;
+        if (elapsed >= total) nextCaption();
+        if (running) frame = requestAnimationFrame(tick);
+      }
+      function startTour() {
+        running = true; paused = false; tour.hidden = false;
+        document.body.classList.add("touring");
+        start.textContent = "Stop the guided pitch"; start.setAttribute("aria-pressed", "true");
+        pause.textContent = "Pause"; showCaption(0);
+        cancelAnimationFrame(frame); frame = requestAnimationFrame(tick);
+      }
+      function togglePause() {
+        if (!running) return;
+        paused = !paused; pause.textContent = paused ? "Resume" : "Pause";
+        cancelAnimationFrame(frame);
+        if (!paused) { previous = performance.now(); frame = requestAnimationFrame(tick); }
+      }
+      start.addEventListener("click", () => running ? stopTour() : startTour());
+      pause.addEventListener("click", togglePause);
+      document.getElementById("tour-next").addEventListener("click", nextCaption);
+      document.getElementById("tour-stop").addEventListener("click", () => stopTour(true));
+      document.addEventListener("visibilitychange", () => { if (document.hidden && running && !paused) togglePause(); });
+      document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener("click", () => stopTour()));
+      document.addEventListener("keydown", event => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+        if (event.target.closest("input, textarea, select, [contenteditable]")) return;
+        if (event.key === "Escape" && running) { stopTour(true); return; }
+        if (event.target.closest("button, a, summary")) return;
+        if (event.key.toLowerCase() === "p") { event.preventDefault(); running ? stopTour() : startTour(); }
+        if (event.key === " " && running) { event.preventDefault(); togglePause(); }
+      });
+
+      let lens = "applications";
+      function selectTab(tab, focus = false) {
+        if (running && !paused) togglePause();
+        const tabs = [...tab.closest('[role="tablist"]').querySelectorAll('[role="tab"]')];
+        tabs.forEach(item => {
+          const selected = item === tab;
+          item.setAttribute("aria-selected", String(selected)); item.tabIndex = selected ? 0 : -1;
+          document.getElementById(item.getAttribute("aria-controls")).hidden = !selected;
+        });
+        if (tab.dataset.lens) { lens = tab.dataset.lens; document.getElementById("copy-status").textContent = ""; }
+        if (focus) tab.focus();
+      }
+      document.querySelectorAll('[role="tablist"]').forEach(list => {
+        const tabs = [...list.querySelectorAll('[role="tab"]')];
+        tabs.forEach((tab, position) => {
+          tab.addEventListener("click", () => selectTab(tab));
+          tab.addEventListener("keydown", event => {
+            let next;
+            if (event.key === "ArrowRight") next = (position + 1) % tabs.length;
+            if (event.key === "ArrowLeft") next = (position - 1 + tabs.length) % tabs.length;
+            if (event.key === "Home") next = 0;
+            if (event.key === "End") next = tabs.length - 1;
+            if (next !== undefined) { event.preventDefault(); event.stopPropagation(); selectTab(tabs[next], true); }
+          });
+        });
+      });
+      const requestedLens = new URLSearchParams(location.search).get("lens");
+      const initialTab = [...document.querySelectorAll("[data-lens]")].find(tab => tab.dataset.lens === requestedLens);
+      if (initialTab) selectTab(initialTab);
+      document.getElementById("copy-lens").addEventListener("click", async () => {
+        const url = new URL(location.href);
+        url.search = ""; url.searchParams.set("lens", lens); url.hash = "fit";
+        const status = document.getElementById("copy-status");
+        if (!navigator.clipboard) { status.textContent = `Copy this link: ${url.href}`; return; }
+        try { await navigator.clipboard.writeText(url.href); status.textContent = "Link copied."; }
+        catch { status.textContent = `Clipboard unavailable. Copy this link: ${url.href}`; }
+      });
+      let openedForPrint = [];
+      window.addEventListener("beforeprint", () => {
+        openedForPrint = [...document.querySelectorAll("details:not([open])")];
+        openedForPrint.forEach(card => { card.open = true; });
+      });
+      window.addEventListener("afterprint", () => { openedForPrint.forEach(card => { card.open = false; }); });
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+</body>
+</html>
