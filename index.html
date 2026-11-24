@@ -62,7 +62,7 @@
     .hero-art figcaption { padding: 12px 18px; color: var(--muted); background: var(--surface); font-size: 13px; }
     .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 28px; }
     .pillar, .card, .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-    .pillar strong { display: block; color: var(--lavender); }
+    .pillar strong { display: block; color: var(--lavender); font-size: 30px; line-height: 1.15; margin-bottom: 8px; }
     .pillar span { display: block; color: var(--muted); font-size: 14px; }
     .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
     .card p, .panel p { color: var(--muted); }
@@ -93,13 +93,27 @@
     .tourhead { display: flex; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 12px; color: var(--amber); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
     .tourtext { margin-bottom: 12px; }
     .tourcontrols { display: flex; gap: 8px; }
+    .tourcontrols { flex-wrap: wrap; }
+    .tour-note { font-size: 13px; color: var(--soft); margin: 12px 0 0; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .flow { padding-left: 24px; margin: 0; }
+    .flow li { padding: 8px 0 12px 8px; color: var(--muted); }
+    .flow strong { display: block; color: var(--ink); }
+    .story-tag { display: block; color: var(--amber); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+    .body b { color: var(--amber); }
+    .section-nav { position: fixed; right: 12px; top: 50%; transform: translateY(-50%); z-index: 20; display: grid; gap: 12px; }
+    .section-nav a { width: 10px; height: 10px; border: 1px solid var(--lavender); border-radius: 50%; }
+    .section-nav a[aria-current="true"] { background: var(--amber); border-color: var(--amber); }
     .tourtrack { height: 4px; margin-top: 14px; background: var(--line); border-radius: 4px; overflow: hidden; }
     .tourfill { height: 100%; width: 0; background: var(--amber); }
     body.touring { padding-bottom: var(--tour-space, 230px); }
     body.touring .slide { scroll-margin-top: 20px; }
     .js-only { display: none; }
     .js .js-only { display: inline-flex; }
+    .js .section-nav { display: grid; }
     @media (max-width: 980px) {
+      .two { grid-template-columns: 1fr; gap: 20px; }
+      .js .section-nav { display: none; }
       .hero { grid-template-columns: 1fr; gap: 28px; }
       .hero-art { max-width: 380px; }
       .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -121,7 +135,7 @@
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     @media print {
-      .topbar, .tour, .skip, .actions, .tabs { display: none !important; }
+      .topbar, .tour, .skip, .actions, .tabs, .section-nav { display: none !important; }
       .slide { min-height: auto; padding: 24px; break-inside: avoid; }
       [role="tabpanel"][hidden] { display: block !important; }
       body.touring { padding-bottom: 0; }
@@ -134,28 +148,29 @@
   <header class="topbar">
     <a class="brand" href="#hello"><strong>Aravindh Srinivasan</strong><span>AI Product Manager</span></a>
     <nav class="navlinks" aria-label="Main navigation">
-      <a href="#projects">Projects</a><a href="#experience" class="optional">Experience</a><a href="#contact">Contact</a>
+      <a href="#experience">Experience</a><a href="#projects" class="optional">Projects</a><a href="#contact">Contact</a>
       <a href="https://github.com/aravindhsrinivasan" class="optional">GitHub</a>
     </nav>
   </header>
   <main>
-    <section class="slide" id="hello" aria-labelledby="hello-title" data-caption="I'm Aravindh, an AI product manager. I turn generative AI into products people trust, bringing together customer discovery, evaluation and platform thinking.">
+    <section class="slide" id="hello" aria-labelledby="hello-title" data-caption="Hi, I'm Aravindh, a Senior AI Product Manager at Microsoft. I turn generative AI into products people trust. I bring more than fourteen years across cloud, data and AI, from operating systems to consulting and product leadership.">
       <div class="wrap hero">
         <div>
           <p class="eyebrow">Senior AI Product Manager</p>
           <h1 id="hello-title">Aravindh<br>Srinivasan</h1>
           <p class="lead">I turn generative AI into products people trust.</p>
-          <p class="meta">Cloud, data and AI &middot; Bengaluru, India</p>
+          <p class="meta">14+ years across cloud, data and AI &middot; Microsoft &middot; Bengaluru, India</p>
           <div class="actions">
-            <button class="btn btn-primary js-only" id="tour-start" type="button" aria-pressed="false">Read the guided pitch</button>
-            <a class="btn" href="#projects">Explore my project roadmap</a>
+            <button class="btn btn-primary js-only" id="tour-start" type="button" aria-pressed="false">Play the pitch</button>
+            <button class="btn js-only" id="tour-captions" type="button">Read captions</button>
+            <a class="btn" href="#experience">Explore what I've shipped</a>
           </div>
-          <p class="note">Guided captions are available now. Revised narration will be added later.</p>
+          <p class="note">Optional on-device synthetic voice, with captions. This revised script is not the original recorded voiceover. No sound plays until you choose Play.</p>
           <div class="pillars">
-            <div class="pillar"><strong>Discovery</strong><span>Start with the user's job.</span></div>
-            <div class="pillar"><strong>Evaluation</strong><span>Define quality before launch.</span></div>
-            <div class="pillar"><strong>Human judgment</strong><span>Make consequential actions explicit.</span></div>
-            <div class="pillar"><strong>Platform thinking</strong><span>Build reusable capabilities.</span></div>
+            <div class="pillar"><strong>Idea &rarr; GA</strong><span>Led generative AI summarization from discovery to general availability.</span></div>
+            <div class="pillar"><strong>Human in the loop</strong><span>Define where agents draft and people decide.</span></div>
+            <div class="pillar"><strong>Cloud &rarr; AI</strong><span>Operator, Azure consultant, then product manager.</span></div>
+            <div class="pillar"><strong>Build + evaluate</strong><span>Working prototypes, explicit quality bars and rollout decisions.</span></div>
           </div>
         </div>
         <figure class="hero-art">
@@ -164,17 +179,109 @@
         </figure>
       </div>
     </section>
-    <section class="slide" id="projects" aria-labelledby="projects-title" data-caption="My personal project roadmap has three parts: a cited documentation copilot, a support agent with human approval, and a measured improvement to the copilot. These projects are planned, not completed demos.">
+    <section class="slide" id="now" aria-labelledby="now-title" data-caption="My focus is the shift from dashboards to useful AI workflows. The product question is not just what an agent can do. It's what the person needs, which evidence supports the answer, and where a human must approve the next action.">
+      <div class="wrap two">
+        <div>
+          <p class="eyebrow">What I'm focused on</p>
+          <h2 id="now-title">From dashboards to agents</h2>
+          <p class="lead">Less gathering context. More making informed decisions.</p>
+          <p>My work brings together data platforms, summarization and human-in-the-loop workflows. I want AI to fit the task people already need to complete, not become another destination to manage.</p>
+          <p class="note">The comparison is an illustrative product pattern, not an employer roadmap or a measured time-saving claim.</p>
+        </div>
+        <div>
+          <div class="tabs" role="tablist" aria-label="Compare the workflow">
+            <button class="tab" id="before-tab" role="tab" aria-controls="before-panel" aria-selected="false" tabindex="-1" type="button">Before</button>
+            <button class="tab" id="after-tab" role="tab" aria-controls="after-panel" aria-selected="true" type="button">With an agent</button>
+          </div>
+          <div class="panel" id="before-panel" role="tabpanel" aria-labelledby="before-tab" hidden>
+            <ol class="flow"><li><strong>Find the context</strong>Open several sources and identify what matters.</li><li><strong>Reconcile the evidence</strong>Check dates, resolve inconsistencies and find missing information.</li><li><strong>Draft from scratch</strong>Write, source and review the brief.</li></ol>
+          </div>
+          <div class="panel" id="after-panel" role="tabpanel" aria-labelledby="after-tab">
+            <ol class="flow"><li><strong>Ask in context</strong>Start from the user's job and permitted sources.</li><li><strong>Draft with evidence</strong>Make citations, gaps and uncertainty visible.</li><li><strong>Review before acting</strong>A person checks, edits and approves anything consequential.</li></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="slide" id="experience" aria-labelledby="experience-title" data-caption="My professional background spans cloud consulting, data platforms and AI product delivery. I work across discovery, prototyping and launch, with particular attention to quality and the decisions that keep users in control.">
       <div class="wrap">
-        <p class="eyebrow">Personal project roadmap</p>
+        <p class="eyebrow">Professional experience</p>
+        <h2 id="experience-title">Generative AI, from idea to GA</h2>
+        <p class="lead">What I did, what it changed and what I learned. Open a card for the story.</p>
+        <div class="cards">
+          <details class="card"><summary><span class="story-tag">Idea &rarr; GA</span>LLM summarization</summary><div class="body"><p><b>Did:</b> led summarization experiences through discovery, quality definition, preview and general availability.</p><p><b>Changed:</b> made summarization available within an existing workflow rather than a separate destination.</p><p><b>Learned:</b> usage is not value; understand whether the output helps the user finish the job.</p></div></details>
+          <details class="card"><summary><span class="story-tag">Human judgment</span>Agentic workflows</summary><div class="body"><p><b>Did:</b> designed workflows where agents gather context and draft, while people review consequential actions.</p><p><b>Changed:</b> made the approval boundary part of product scope.</p><p><b>Learned:</b> decide where the human approves before deciding what the agent automates.</p></div></details>
+          <details class="card"><summary><span class="story-tag">Trust is a feature</span>AI quality and evals</summary><div class="body"><p><b>Did:</b> defined quality criteria, paired automated checks with human review, and made rollout and rollback decisions.</p><p><b>Changed:</b> treated reliability as a launch requirement.</p><p><b>Learned:</b> an impressive demo is not evidence that a product is ready.</p></div></details>
+          <details class="card"><summary><span class="story-tag">Platform thinking</span>Cloud and data migration</summary><div class="body"><p><b>Did:</b> worked across cloud consulting, platform migration and developer enablement.</p><p><b>Changed:</b> brought adoption, communication and long-term maintenance into the delivery plan.</p><p><b>Learned:</b> a migration is a change in people's work, not just a technology replacement.</p></div></details>
+          <details class="card"><summary><span class="story-tag">Working software</span>Live, AI-assisted prototypes</summary><div class="body"><p><b>Did:</b> built working prototypes with AI coding tools to collect feedback and make product decisions concrete.</p><p><b>Changed:</b> gave engineering a reference for the intended experience.</p><p><b>Learned:</b> pair prototypes with decision records and honest fidelity labels.</p></div></details>
+          <details class="card"><summary><span class="story-tag">Multiply the team</span>Mentoring and enablement</summary><div class="body"><p><b>Did:</b> mentored colleagues and helped people build confidence with product thinking and AI-assisted development.</p><p><b>Changed:</b> shared a repeatable way to prototype and learn.</p><p><b>Learned:</b> the useful artifact is the method people can reuse, not just the demo.</p></div></details>
+        </div>
+      </div>
+    </section>
+    <section class="slide" id="approach" aria-labelledby="approach-title" data-caption="I start with the user and the failure cases, define success, combine automated evaluation with human review, and plan how to roll out or stop. A working prototype is useful only when its limitations are clear.">
+      <div class="wrap">
+        <p class="eyebrow">How I approach AI products</p>
+        <h2 id="approach-title">Trust is a feature</h2>
+        <p class="lead">The questions I want answered before calling a demo a product.</p>
+        <div class="tabs" role="tablist" aria-label="Product development approach">
+          <button class="tab" id="discover-tab" role="tab" aria-controls="discover-panel" aria-selected="true" type="button">Understand the job</button>
+          <button class="tab" id="criteria-tab" role="tab" aria-controls="criteria-panel" aria-selected="false" tabindex="-1" type="button">Define success</button>
+          <button class="tab" id="evaluate-tab" role="tab" aria-controls="evaluate-panel" aria-selected="false" tabindex="-1" type="button">Evaluate</button>
+          <button class="tab" id="review-tab" role="tab" aria-controls="review-panel" aria-selected="false" tabindex="-1" type="button">Keep people in control</button>
+          <button class="tab" id="learn-tab" role="tab" aria-controls="learn-panel" aria-selected="false" tabindex="-1" type="button">Ship and learn</button>
+        </div>
+        <div class="panel" id="discover-panel" role="tabpanel" aria-labelledby="discover-tab"><h3>Start with the user, not the model</h3><p>Understand the task, the current workaround and the cost of being wrong. Use examples of failure to decide where AI can help and where it should not act.</p></div>
+        <div class="panel" id="criteria-panel" role="tabpanel" aria-labelledby="criteria-tab" hidden><h3>Set the bar before the result</h3><p>Write down success criteria, non-goals and unacceptable failures. A launch decision should not depend on moving the goalposts after seeing an evaluation.</p></div>
+        <div class="panel" id="evaluate-panel" role="tabpanel" aria-labelledby="evaluate-tab" hidden><h3>Use the right kind of evidence</h3><p>Check deterministic requirements with code, use expert review for judgment, and calibrate model-based evaluation rather than treating it as ground truth.</p></div>
+        <div class="panel" id="review-panel" role="tabpanel" aria-labelledby="review-tab" hidden><h3>Make the approval boundary visible</h3><p>Distinguish reading, drafting and acting. Show uncertainty, explain tool failures and require approval before a consequential action.</p></div>
+        <div class="panel" id="learn-panel" role="tabpanel" aria-labelledby="learn-tab" hidden><h3>Know what would make you stop</h3><p>Plan feedback, regression checks and rollback conditions. Report inconclusive results when the evidence does not support a decision.</p></div>
+        <p class="callout"><strong>The product judgment:</strong> know when not to ship. Quality criteria, human review and a rollback plan matter as much as the happy-path demo.</p>
+      </div>
+    </section>
+    <section class="slide" id="fit" aria-labelledby="fit-title" data-caption="My interests connect AI applications, agent platforms and evaluation. I bring the product questions across those boundaries: who benefits, what can go wrong, and what evidence would justify the next investment?">
+      <div class="wrap">
+        <p class="eyebrow">Role fit</p>
+        <h2 id="fit-title">Choose the lens that matters to your team</h2>
+        <div class="tabs" role="tablist" aria-label="Role lens">
+          <button class="tab" id="applications-tab" data-lens="applications" role="tab" aria-controls="applications-panel" aria-selected="true" type="button">AI applications</button>
+          <button class="tab" id="agents-tab" data-lens="agents" role="tab" aria-controls="agents-panel" aria-selected="false" tabindex="-1" type="button">Agents and platforms</button>
+          <button class="tab" id="data-tab" data-lens="data" role="tab" aria-controls="data-panel" aria-selected="false" tabindex="-1" type="button">Data and developer platforms</button>
+          <button class="tab" id="quality-tab" data-lens="quality" role="tab" aria-controls="quality-panel" aria-selected="false" tabindex="-1" type="button">Quality and evals</button>
+          <button class="tab" id="working-tab" data-lens="working" role="tab" aria-controls="working-panel" aria-selected="false" tabindex="-1" type="button">How I work</button>
+        </div>
+        <div class="panel" id="applications-panel" role="tabpanel" aria-labelledby="applications-tab"><h3>Turn model capability into a useful workflow</h3><p>Professional experience taking summarization from discovery to GA, with quality and workflow integration in scope. My independent documentation copilot connects those product decisions to explicit failure cases.</p></div>
+        <div class="panel" id="agents-panel" role="tabpanel" aria-labelledby="agents-tab" hidden><h3>Design the boundaries, not just the happy path</h3><p>Reusable capabilities, tool permissions and human approval. My planned triage agent and fictional help-desk MCP server will explore these boundaries.</p></div>
+        <div class="panel" id="data-panel" role="tabpanel" aria-labelledby="data-tab" hidden><h3>Think about the people around the platform</h3><p>Azure consulting, data-platform migration and developer enablement. I bring adoption, access, change management and deprecation into the product conversation.</p></div>
+        <div class="panel" id="quality-panel" role="tabpanel" aria-labelledby="quality-tab" hidden><h3>Make the launch recommendation defensible</h3><p>Quality bars, human review and rollout decisions. My personal copilot baseline has a 60-question development evaluation, with unreviewed labels explicitly disclosed. A quality-cost routing comparison is planned, not a demonstrated improvement.</p></div>
+        <div class="panel" id="working-panel" role="tabpanel" aria-labelledby="working-tab" hidden><h3>Discovery, working prototypes and clear decisions</h3><p>Make ideas concrete with users, label what is real versus simulated, and preserve the decision behind each tradeoff. Mentor others so the approach scales beyond a single project.</p></div>
+        <div class="actions js-only"><button class="btn btn-small" id="copy-lens" type="button">Copy a link to this lens</button></div>
+        <output id="copy-status" class="note" aria-live="polite"></output>
+      </div>
+    </section>
+    <section class="slide" id="path" aria-labelledby="path-title" data-caption="I started in IT operations at Accenture, moved into Azure cloud consulting at Microsoft, and then into product management. That path shapes how I think about users, platforms and delivery.">
+      <div class="wrap">
+        <p class="eyebrow">My path</p>
+        <h2 id="path-title">Operator. Consultant. Product manager.</h2>
+        <ol class="path">
+          <li><strong>2012 &middot; IT operations</strong><h3>Accenture</h3><p>Deployment automation and team leadership. Learning how systems behave beyond the design document.</p></li>
+          <li><strong>2014 &middot; Cloud consulting</strong><h3>Microsoft Azure</h3><p>Cloud platforms, delivery practices and developer enablement. Building platforms pulled me into product.</p></li>
+          <li><strong>2021 &middot; Product management</strong><h3>Data and platforms</h3><p>Customer problems, adoption, migration and the long-term life of a platform.</p></li>
+          <li><strong>2025&ndash;26 &middot; Generative AI</strong><h3>Useful and trustworthy</h3><p>Summarization, prototypes, evaluation and human-in-the-loop workflows.</p></li>
+        </ol>
+        <p class="lead">Next, I want to own an AI product area end to end, from strategy and quality bars to launch and learning.</p>
+        <p class="note">B.E. Computer Science &middot; Azure Solutions Architect Expert &middot; Azure DevOps Engineer Expert</p>
+      </div>
+    </section>
+    <section class="slide" id="projects" aria-labelledby="projects-title" data-caption="I'm also building an independent portfolio using public sources. My Kubernetes documentation copilot has an extractive baseline evaluated on sixty AI-drafted questions. Those labels are still unreviewed, so this is development evidence, not a launch claim. A support triage agent and a measured routing comparison are next.">
+      <div class="wrap">
+        <p class="eyebrow">Independent portfolio</p>
         <h2 id="projects-title">Build it. Break it. Measure it.</h2>
-        <p class="lead">Independent projects using public documentation and fictional scenarios. This is the plan; code, demos and measured results will be linked as they become ready.</p>
+        <p class="lead">Public documentation, fictional scenarios and honest evidence. These personal projects are separate from my professional experience.</p>
         <div class="cards">
           <article class="card project">
-            <span class="status">Planned &middot; not yet built</span>
+            <span class="status">Local baseline built &middot; not yet published</span>
             <h3>RAG support copilot</h3>
-            <p>A Kubernetes documentation assistant designed to cite sources, respect versions and abstain when the docs cannot support an answer.</p>
-            <p class="proof"><strong>What it will demonstrate:</strong> discovery, retrieval, AI UX and evaluation beyond a happy-path demo.</p>
+            <p>A version-aware Kubernetes documentation assistant with citations, abstention and conflict handling. The extractive baseline was evaluated on <strong>60 AI-drafted questions</strong>.</p>
+            <p class="proof"><strong>Evidence status:</strong> all labels remain unreviewed; results are ungated development evidence. Optional SDK generation is implemented locally; live model evaluation is pending. Code and replay will be linked after review.</p>
           </article>
           <article class="card project">
             <span class="status">Planned &middot; not yet built</span>
@@ -189,71 +296,7 @@
             <p class="proof"><strong>What it will demonstrate:</strong> product tradeoffs backed by reproducible results, not claims of improvement.</p>
           </article>
         </div>
-        <p class="supporting"><strong>Also planned:</strong> a fictional help-desk MCP server, an evaluation-plan template, a decision casebook, a prototype hub and an evals workshop. These will be developed from public references, not employer artifacts.</p>
-      </div>
-    </section>
-    <section class="slide" id="experience" aria-labelledby="experience-title" data-caption="My professional background spans cloud consulting, data platforms and AI product delivery. I work across discovery, prototyping and launch, with particular attention to quality and the decisions that keep users in control.">
-      <div class="wrap">
-        <p class="eyebrow">Professional experience</p>
-        <h2 id="experience-title">From product idea to useful capability</h2>
-        <p class="lead">A high-level view of my experience, separate from the personal projects above.</p>
-        <div class="cards">
-          <details class="card"><summary>Generative AI delivery</summary><div class="body"><p>Product leadership across discovery, previews and general availability for summarization experiences.</p><p>My focus: define the user's job, test the quality bar and make the experience useful in an existing workflow.</p></div></details>
-          <details class="card"><summary>AI quality and judgment</summary><div class="body"><p>Experience defining evaluation criteria, combining automated checks with human review, and making rollout and rollback decisions.</p><p>My focus: treat reliability as product scope, not something to inspect only after launch.</p></div></details>
-          <details class="card"><summary>Human-in-the-loop workflows</summary><div class="body"><p>Exploring where agents can gather context and draft work, and where a person should remain responsible for the next action.</p><p>My focus: make approval, uncertainty and failure visible to the user.</p></div></details>
-          <details class="card"><summary>Cloud and data platforms</summary><div class="body"><p>A background in cloud consulting, platform migration and developer enablement.</p><p>My focus: understand the people and workflows around the technology, including adoption and change management.</p></div></details>
-          <details class="card"><summary>Prototypes as a thinking tool</summary><div class="body"><p>I use working prototypes to make ideas concrete, collect feedback and record decisions before larger engineering investments.</p><p>My focus: label what is real, what is simulated and what still needs validation.</p></div></details>
-          <details class="card"><summary>Helping others build</summary><div class="body"><p>I enjoy mentoring colleagues and helping people get comfortable with product thinking and AI-assisted development.</p><p>My focus: share a repeatable way to learn, not just a finished artifact.</p></div></details>
-        </div>
-      </div>
-    </section>
-    <section class="slide" id="approach" aria-labelledby="approach-title" data-caption="I start with the user and the failure cases, define success, combine automated evaluation with human review, and plan how to roll out or stop. A working prototype is useful only when its limitations are clear.">
-      <div class="wrap">
-        <p class="eyebrow">How I approach AI products</p>
-        <h2 id="approach-title">Trust is part of the product</h2>
-        <p class="lead">The questions I want answered before calling a demo a product.</p>
-        <div class="tabs" role="tablist" aria-label="Product development approach">
-          <button class="tab" id="discover-tab" role="tab" aria-controls="discover-panel" aria-selected="true" type="button">Understand the job</button>
-          <button class="tab" id="criteria-tab" role="tab" aria-controls="criteria-panel" aria-selected="false" tabindex="-1" type="button">Define success</button>
-          <button class="tab" id="evaluate-tab" role="tab" aria-controls="evaluate-panel" aria-selected="false" tabindex="-1" type="button">Evaluate</button>
-          <button class="tab" id="review-tab" role="tab" aria-controls="review-panel" aria-selected="false" tabindex="-1" type="button">Keep people in control</button>
-          <button class="tab" id="learn-tab" role="tab" aria-controls="learn-panel" aria-selected="false" tabindex="-1" type="button">Ship and learn</button>
-        </div>
-        <div class="panel" id="discover-panel" role="tabpanel" aria-labelledby="discover-tab"><h3>Start with the user, not the model</h3><p>Understand the task, the current workaround and the cost of being wrong. Use examples of failure to decide where AI can help and where it should not act.</p></div>
-        <div class="panel" id="criteria-panel" role="tabpanel" aria-labelledby="criteria-tab" hidden><h3>Set the bar before the result</h3><p>Write down success criteria, non-goals and unacceptable failures. A launch decision should not depend on moving the goalposts after seeing an evaluation.</p></div>
-        <div class="panel" id="evaluate-panel" role="tabpanel" aria-labelledby="evaluate-tab" hidden><h3>Use the right kind of evidence</h3><p>Check deterministic requirements with code, use expert review for judgment, and calibrate model-based evaluation rather than treating it as ground truth.</p></div>
-        <div class="panel" id="review-panel" role="tabpanel" aria-labelledby="review-tab" hidden><h3>Make the approval boundary visible</h3><p>Distinguish reading, drafting and acting. Show uncertainty, explain tool failures and require approval before a consequential action.</p></div>
-        <div class="panel" id="learn-panel" role="tabpanel" aria-labelledby="learn-tab" hidden><h3>Know what would make you stop</h3><p>Plan feedback, regression checks and rollback conditions. Report inconclusive results when the evidence does not support a decision.</p></div>
-        <p class="callout">These are my general product principles. The personal projects will make them inspectable through code, test cases and decision records.</p>
-      </div>
-    </section>
-    <section class="slide" id="fit" aria-labelledby="fit-title" data-caption="My interests connect AI applications, agent platforms and evaluation. I bring the product questions across those boundaries: who benefits, what can go wrong, and what evidence would justify the next investment?">
-      <div class="wrap">
-        <p class="eyebrow">Role fit</p>
-        <h2 id="fit-title">Choose the lens that matters to your team</h2>
-        <div class="tabs" role="tablist" aria-label="Role lens">
-          <button class="tab" id="applications-tab" data-lens="applications" role="tab" aria-controls="applications-panel" aria-selected="true" type="button">AI applications</button>
-          <button class="tab" id="agents-tab" data-lens="agents" role="tab" aria-controls="agents-panel" aria-selected="false" tabindex="-1" type="button">Agents and platforms</button>
-          <button class="tab" id="quality-tab" data-lens="quality" role="tab" aria-controls="quality-panel" aria-selected="false" tabindex="-1" type="button">Quality and evals</button>
-        </div>
-        <div class="panel" id="applications-panel" role="tabpanel" aria-labelledby="applications-tab"><h3>Turn model capability into a useful workflow</h3><p>Discovery, product definition, prototyping and launch decisions. My planned documentation copilot will connect those decisions to explicit failure cases.</p></div>
-        <div class="panel" id="agents-panel" role="tabpanel" aria-labelledby="agents-tab" hidden><h3>Design the boundaries, not just the happy path</h3><p>Reusable capabilities, tool permissions and human approval. My planned triage agent and fictional help-desk MCP server will explore these boundaries.</p></div>
-        <div class="panel" id="quality-panel" role="tabpanel" aria-labelledby="quality-tab" hidden><h3>Make the launch recommendation defensible</h3><p>Evaluation design, regression analysis and quality-cost tradeoffs. My planned baseline and model-routing comparison will publish measured outcomes when they exist.</p></div>
-        <div class="actions js-only"><button class="btn btn-small" id="copy-lens" type="button">Copy a link to this lens</button></div>
-        <output id="copy-status" class="note" aria-live="polite"></output>
-      </div>
-    </section>
-    <section class="slide" id="path" aria-labelledby="path-title" data-caption="I started in IT operations at Accenture, moved into Azure cloud consulting at Microsoft, and then into product management. That path shapes how I think about users, platforms and delivery.">
-      <div class="wrap">
-        <p class="eyebrow">My path</p>
-        <h2 id="path-title">Operator. Consultant. Product manager.</h2>
-        <ol class="path">
-          <li><strong>IT operations</strong><h3>Accenture</h3><p>Learning how systems behave beyond the design document, and how automation changes everyday work.</p></li>
-          <li><strong>Cloud consulting</strong><h3>Microsoft Azure</h3><p>Working with customers on cloud platforms, delivery practices and developer enablement.</p></li>
-          <li><strong>Product management</strong><h3>Data and platforms</h3><p>Turning customer problems into capabilities, while considering adoption, migration and long-term maintenance.</p></li>
-          <li><strong>AI products</strong><h3>Useful and trustworthy</h3><p>Bringing discovery, prototypes, evaluation and human judgment together.</p></li>
-        </ol>
-        <p class="lead">Next, I want to own an AI product area end to end, from strategy and quality bars to launch and learning.</p>
+        <p class="supporting"><strong>The standard for every project:</strong> the problem, the product, the architecture, the evidence and my decisions. No employer artifacts. No invented user interviews. No improvement claim without a comparison.</p>
       </div>
     </section>
     <section class="slide" id="contact" aria-labelledby="contact-title" data-caption="Outside work, I enjoy mentoring, organic terrace gardening and cooking. I'm interested in teams building useful, trustworthy AI. You can find me on LinkedIn and GitHub.">
@@ -265,24 +308,29 @@
           <div class="card"><h3>Terrace gardening</h3><p>An organic garden that started during lockdown and kept growing.</p></div>
           <div class="card"><h3>Cooking</h3><p>Experimenting in the kitchen and sharing the results.</p></div>
         </div>
+        <p class="lead">It started with Road Rash on a neighbour's PC and learning to type from my mother. That curiosity became computer science, cloud, and now AI products.</p>
         <p class="lead">Building useful, trustworthy AI? Let's talk.</p>
         <div class="actions">
           <a class="btn btn-primary" href="https://www.linkedin.com/in/saiaravindh" rel="noopener">Connect on LinkedIn</a>
           <a class="btn" href="https://github.com/aravindhsrinivasan" rel="noopener">Find me on GitHub</a>
+          <a class="btn" href="mailto:saiaravindh2009@gmail.com">Email me</a>
         </div>
       </div>
     </section>
   </main>
-  <footer><div class="wrap"><span>Personal portfolio. Views my own; no employer endorsement.</span><span>Made with AI assistance. No analytics or third-party scripts. Captions only.</span></div></footer>
-  <aside class="tour" id="tour" aria-label="Guided pitch captions" hidden>
+  <footer><div class="wrap"><span>Personal portfolio. Views my own; no employer endorsement.</span><span>Made with AI assistance. Optional on-device synthetic narration. No analytics or third-party scripts.</span></div></footer>
+  <nav class="section-nav js-only" id="section-nav" aria-label="Pitch sections"></nav>
+  <aside class="tour" id="tour" aria-label="Guided pitch" hidden>
     <div class="tourbox">
-      <div class="tourhead"><span id="tour-step"></span><span>Captions only</span></div>
+      <div class="tourhead"><span id="tour-step"></span><span id="tour-mode">Captions only</span></div>
       <p class="tourtext" id="tour-text" aria-live="polite"></p>
       <div class="tourcontrols">
         <button class="btn btn-small" id="tour-pause" type="button">Pause</button>
         <button class="btn btn-small" id="tour-next" type="button">Next</button>
+        <button class="btn btn-small" id="tour-voice" type="button" aria-pressed="false">Use voice</button>
         <button class="btn btn-small" id="tour-stop" type="button">Stop</button>
       </div>
+      <p class="tour-note" id="tour-note" role="status"></p>
       <div class="tourtrack" aria-hidden="true"><div class="tourfill" id="tour-fill"></div></div>
     </div>
   </aside>
@@ -297,12 +345,78 @@
       const step = document.getElementById("tour-step");
       const fill = document.getElementById("tour-fill");
       const pause = document.getElementById("tour-pause");
+      const voiceButton = document.getElementById("tour-voice");
+      const mode = document.getElementById("tour-mode");
+      const note = document.getElementById("tour-note");
+      const speech = window.speechSynthesis;
+      const navigation = document.getElementById("section-nav");
+      sections.forEach(section => {
+        const link = document.createElement("a");
+        link.href = `#${section.id}`;
+        link.title = section.querySelector("h1, h2").innerText.replace(/\s+/g, " ");
+        link.setAttribute("aria-label", link.title);
+        navigation.append(link);
+      });
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.filter(entry => entry.isIntersecting).forEach(entry => {
+            [...navigation.children].forEach(link => {
+              if (link.hash === `#${entry.target.id}`) link.setAttribute("aria-current", "true");
+              else link.removeAttribute("aria-current");
+            });
+          });
+        }, { rootMargin: "-35% 0px -35% 0px" });
+        sections.forEach(section => observer.observe(section));
+      }
       new ResizeObserver(() => {
         document.body.style.setProperty("--tour-space", `${tour.getBoundingClientRect().height + 32}px`);
       }).observe(tour, { box: "border-box" });
       let running = false, paused = false, index = 0, elapsed = 0, previous = 0, frame = 0;
+      let voiceWanted = false, narrating = false, speechStarted = false, generation = 0;
+      let utterance = null, returnFocus = start;
       const duration = section => Math.max(8000, section.dataset.caption.split(/\s+/).length * 400);
 
+      function cancelSpeech() {
+        generation++;
+        narrating = false; speechStarted = false; utterance = null;
+        if (speech) speech.cancel();
+      }
+      function setVoiceState(active) {
+        mode.textContent = active ? "On-device synthetic voice" : "Captions only";
+        voiceButton.textContent = active ? "Mute voice" : "Use voice";
+        voiceButton.setAttribute("aria-pressed", String(active));
+        text.setAttribute("aria-live", active ? "off" : "polite");
+      }
+      function captionsFallback(message) {
+        cancelSpeech(); voiceWanted = false; setVoiceState(false);
+        note.textContent = message;
+        elapsed = 0; previous = performance.now();
+      }
+      function narrate() {
+        cancelSpeech();
+        setVoiceState(false);
+        if (!voiceWanted) return;
+        const voice = speech && speech.getVoices().find(item => item.localService && /^en(?:-|$)/i.test(item.lang));
+        if (!voice || !window.SpeechSynthesisUtterance) {
+          captionsFallback("No on-device English voice is available in this browser. Playing captions instead.");
+          return;
+        }
+        const request = generation;
+        utterance = new SpeechSynthesisUtterance(text.textContent);
+        utterance.voice = voice; utterance.lang = voice.lang;
+        utterance.onstart = () => { if (request === generation) speechStarted = true; };
+        utterance.onend = () => {
+          if (request !== generation || !running || paused) return;
+          narrating = false; nextCaption();
+        };
+        utterance.onerror = () => {
+          if (request === generation && running) captionsFallback("Narration was interrupted. Continuing with captions.");
+        };
+        narrating = true; setVoiceState(true);
+        note.textContent = "Reading the revised script with an on-device voice, not the original recording.";
+        try { speech.speak(utterance); }
+        catch { captionsFallback("This browser could not start narration. Playing captions instead."); }
+      }
       function goTo(section) {
         section.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
       }
@@ -312,12 +426,15 @@
         step.textContent = `${index + 1} / ${sections.length}`;
         fill.style.width = "0%";
         goTo(sections[index]);
+        if (!paused) narrate();
+        else cancelSpeech();
       }
       function stopTour(restoreFocus = false) {
         running = false; paused = false; cancelAnimationFrame(frame);
+        cancelSpeech();
         tour.hidden = true; document.body.classList.remove("touring");
-        start.textContent = "Read the guided pitch"; start.setAttribute("aria-pressed", "false");
-        if (restoreFocus) start.focus({ preventScroll: true });
+        start.textContent = "Play the pitch"; start.setAttribute("aria-pressed", "false");
+        if (restoreFocus) returnFocus.focus({ preventScroll: true });
       }
       function nextCaption() {
         if (!running) return;
@@ -328,14 +445,18 @@
         if (!running || paused) return;
         elapsed += now - previous; previous = now;
         const total = duration(sections[index]);
-        fill.style.width = `${Math.min(100, elapsed / total * 100)}%`;
-        if (elapsed >= total) nextCaption();
+        fill.style.width = `${Math.min(narrating ? 95 : 100, elapsed / total * 100)}%`;
+        if (narrating && ((!speechStarted && elapsed > 5000) || elapsed > total * 3 + 10000)) {
+          captionsFallback("Narration did not complete. Continuing with captions.");
+        } else if (!narrating && elapsed >= total) nextCaption();
         if (running) frame = requestAnimationFrame(tick);
       }
-      function startTour() {
+      function startTour(withVoice = true, trigger = start) {
+        cancelSpeech(); voiceWanted = withVoice; returnFocus = trigger;
         running = true; paused = false; tour.hidden = false;
+        note.textContent = withVoice ? "" : "Reading mode. Select Use voice for optional on-device narration.";
         document.body.classList.add("touring");
-        start.textContent = "Stop the guided pitch"; start.setAttribute("aria-pressed", "true");
+        start.textContent = "Stop the pitch"; start.setAttribute("aria-pressed", "true");
         pause.textContent = "Pause"; showCaption(0);
         cancelAnimationFrame(frame); frame = requestAnimationFrame(tick);
       }
@@ -343,9 +464,28 @@
         if (!running) return;
         paused = !paused; pause.textContent = paused ? "Resume" : "Pause";
         cancelAnimationFrame(frame);
-        if (!paused) { previous = performance.now(); frame = requestAnimationFrame(tick); }
+        if (paused) {
+          cancelSpeech();
+          note.textContent = voiceWanted ? "Paused. Resume restarts this section's narration." : "Captions paused.";
+        } else {
+          if (voiceWanted) { elapsed = 0; narrate(); }
+          else note.textContent = "Reading mode. Select Use voice for optional on-device narration.";
+          previous = performance.now(); frame = requestAnimationFrame(tick);
+        }
       }
       start.addEventListener("click", () => running ? stopTour() : startTour());
+      document.getElementById("tour-captions").addEventListener("click", event => startTour(false, event.currentTarget));
+      voiceButton.addEventListener("click", () => {
+        voiceWanted = !voiceWanted;
+        if (!voiceWanted) {
+          cancelSpeech(); setVoiceState(false);
+          note.textContent = "Voice muted. Captions remain available.";
+        } else if (!paused) { elapsed = 0; previous = performance.now(); narrate(); }
+        else {
+          setVoiceState(true);
+          note.textContent = "Voice selected. Resume to narrate this section.";
+        }
+      });
       pause.addEventListener("click", togglePause);
       document.getElementById("tour-next").addEventListener("click", nextCaption);
       document.getElementById("tour-stop").addEventListener("click", () => stopTour(true));
@@ -358,6 +498,7 @@
         if (event.target.closest("button, a, summary")) return;
         if (event.key.toLowerCase() === "p") { event.preventDefault(); running ? stopTour() : startTour(); }
         if (event.key === " " && running) { event.preventDefault(); togglePause(); }
+        if (event.key.toLowerCase() === "m" && running) { event.preventDefault(); voiceButton.click(); }
       });
 
       let lens = "applications";

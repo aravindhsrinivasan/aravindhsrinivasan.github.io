@@ -36,7 +36,7 @@ class PortfolioTests(unittest.TestCase):
                 self.assertTrue((ROOT / attrs["src"]).is_file())
                 self.assertTrue(attrs.get("alt"))
 
-    def test_guided_pitch_has_captions_without_audio_payloads(self):
+    def test_guided_pitch_keeps_recording_out_and_discloses_local_voice(self):
         sections = [
             attrs for tag, attrs in self.page.elements
             if tag == "section" and "slide" in attrs.get("class", "").split()
@@ -47,6 +47,9 @@ class PortfolioTests(unittest.TestCase):
         self.assertNotIn("base64,", self.html)
         self.assertNotIn("AudioContext", self.html)
         self.assertFalse(list(ROOT.rglob("*.mp3")))
+        self.assertIn("item.localService", self.html)
+        self.assertIn("No on-device English voice", self.html)
+        self.assertIn("not the original recorded voiceover", self.html)
 
     def test_planned_projects_do_not_link_to_nonexistent_repositories(self):
         project_cards = [
@@ -54,12 +57,24 @@ class PortfolioTests(unittest.TestCase):
             if tag == "article" and "project" in attrs.get("class", "").split()
         ]
         self.assertEqual(len(project_cards), 3)
-        self.assertEqual(self.html.count("Planned &middot; not yet built"), len(project_cards))
+        self.assertEqual(self.html.count("Planned &middot; not yet built"), 2)
+        self.assertIn("Local baseline built &middot; not yet published", self.html)
+        self.assertIn("60 AI-drafted questions", self.html)
+        self.assertIn("all labels remain unreviewed", self.html)
         repo_links = [
             attrs["href"] for _, attrs in self.page.elements
             if attrs.get("href", "").startswith("https://github.com/aravindhsrinivasan/")
         ]
         self.assertEqual(repo_links, [])
+
+    def test_uncleared_metrics_and_targets_stay_out_of_public_payload(self):
+        for value in ("93 TB", "8.5K", "8,500", "470 applications", "47%", "73%",
+                      "40h", "15 minutes", "15-minute", "Pinnacle", "12,000", "10,000"):
+            self.assertNotIn(value, self.html)
+        self.assertFalse(any(
+            tag == "script" and attrs.get("src", "").startswith(("http:", "https:"))
+            for tag, attrs in self.page.elements
+        ))
 
 
 if __name__ == "__main__":
